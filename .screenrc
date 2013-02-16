@@ -1,0 +1,29 @@
+#====================
+# My screenrc:
+# by ashiina
+#====================
+
+# term settings
+#termcapinfo xterm* ti@:te@
+# no startup message
+startup_message off
+# default UTF8
+defutf8 on
+# detach on hangup
+autodetach on
+# scrollback lines
+defscrollback 1024
+
+# escape sequence (default if ^Aa)
+escape ^Aa
+
+# == Bindings:
+bind . next
+bind , prev
+
+# caption
+caption always "%1=%{+b rk}%H %{bk}| %{wk} %-w%{= BW}%n %t%{-}%+w %= %{bk}| %{gk}%Y/%m/%d(%D) %{gk}%c"
+
+# Startup commands
+split -v
+
