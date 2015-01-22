@@ -138,5 +138,11 @@ let g:neocomplcache_dictionary_filetype_lists = {
     \ 'vm' : $HOME.'/.vim/dict/vim.dict'
     \ }
 
+"----------------
+" fugitive config
+nnoremap <C-g>a :Gwrite <Enter>
+nnoremap <C-g>c :Gcommit <Enter>
+nnoremap <C-g>f :Gdiff <Enter>
+
 
 
