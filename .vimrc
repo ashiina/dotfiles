@@ -144,6 +144,11 @@ nnoremap <silent><C-g>c :Gcommit <Enter>
 nnoremap <silent><C-g>f :Gdiff <Enter>
 
 "---------------
+" NERDTree
 nnoremap <silent><C-n> :NERDTreeToggle <Enter>
+
+"---------------
+" colorscheme
+colorscheme molokai
 
 
