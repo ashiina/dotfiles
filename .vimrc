@@ -149,6 +149,5 @@ nnoremap <silent><C-n> :NERDTreeToggle <Enter>
 
 "---------------
 " colorscheme
-colorscheme molokai
 
 
