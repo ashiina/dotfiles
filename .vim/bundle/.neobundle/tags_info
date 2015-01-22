@@ -1,0 +1,8 @@
+neobundle.vim
+neocomplcache.vim
+nerdtree
+syntastic
+vim-fugitive
+vim-surround
+vimproc.vim
+vimshell

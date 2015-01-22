@@ -1,3 +1,57 @@
+"NeoBundle Scripts-----------------------------
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=/Users/shiinaahmad/.vim/bundle/neobundle.vim/
+  endif
+
+  " Required:
+  call neobundle#begin(expand('/Users/shiinaahmad/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'Shougo/vimproc.vim', {
+          \ 'build' : {
+          \     'windows' : 'make -f make_mingw32.mak',
+          \     'cygwin' : 'make -f make_cygwin.mak',
+          \     'mac' : 'make -f make_mac.mak',
+          \     'unix' : 'make -f make_unix.mak',
+          \    },
+          \ }
+
+" Add or remove your Bundles here:
+" NeoBundle 'Shougo/neosnippet.vim'
+" NeoBundle 'Shougo/neosnippet-snippets'
+" NeoBundle 'ctrlpvim/ctrlp.vim'
+" NeoBundle 'flazz/vim-colorschemes'
+" NeoBundle 'bling/vim-airline'
+"NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Shougo/neocomplcache.vim'
+
+" You can specify revision/branch/tag.
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts-------------------------
+
+
 set shell=/bin/bash
 
 syntax on
@@ -9,6 +63,8 @@ set list
 set showmatch
 set whichwrap=b,s,h,l,<,>,[,]
 set hlsearch
+set viminfo='20,<1000,s10,h
+autocmd Filetype * set formatoptions-=r
 
 "------------------
 " mouse setting
@@ -27,7 +83,11 @@ setlocal shiftwidth=4
 set listchars=tab:>\ ,extends:<
 set number
 highlight LineNr ctermfg=darkgrey
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+"set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+
+"------------------
+" other settings
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "------------------
 " encodes
@@ -47,74 +107,36 @@ nnoremap <C-e>e :set encoding=euc-jp <Enter>
 set backspace=indent,eol,start
 "map! ^K ^[		" something for the mac...
 
+"-----------------
+" syntastic config
+nnoremap <C-c>e :SyntasticCheck<Enter>:Errors<Enter>
 
-"=========================
-" Vundle settings
-"=========================
-"set nocompatible
-filetype off
+"-----------------
+" neocomplcache 
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_manual_completion_start_length = 0
+let g:neocomplcache_caching_percent_in_statusline = 1
+let g:neocomplcache_enable_skip_completion = 1
+let g:neocomplcache_skip_input_time = '0.5'
+" neocomplcache dict
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scala' : $HOME.'/.vim/bundle/vim-scala/dict/scala.dict',
+    \ 'java' : $HOME.'/.vim/dict/java.dict',
+    \ 'c' : $HOME.'/.vim/dict/c.dict',
+    \ 'cpp' : $HOME.'/.vim/dict/cpp.dict',
+    \ 'javascript' : $HOME.'/.vim/dict/javascript.dict',
+    \ 'ocaml' : $HOME.'/.vim/dict/ocaml.dict',
+    \ 'perl' : $HOME.'/.vim/dict/perl.dict',
+    \ 'php' : $HOME.'/.vim/dict/php.dict',
+    \ 'scheme' : $HOME.'/.vim/dict/scheme.dict',
+    \ 'vm' : $HOME.'/.vim/dict/vim.dict'
+    \ }
 
-set rtp+=~/.vim/vundle/
-call vundle#rc()
-
-" original repos on github
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/neocomplcache'
-Bundle 'ujihisa/quickrun'
-
-"=========================
-" auto-indent (also gets first-letter automatically)
-"=========================
-filetype plugin indent on
-
-"=========================
-" neocomplcache settings
-"=========================
-" Use neocomplcache.
- let g:neocomplcache_enable_at_startup = 1
-" " Use smartcase.
- let g:neocomplcache_enable_smart_case = 1
-" " Use auto select
- "let g:neocomplcache_enable_auto_select = 1
- " Use camel case completion.
- let g:neocomplcache_enable_camel_case_completion = 1
-" " Use underbar completion.
- let g:neocomplcache_enable_underbar_completion = 1
-" " Set minimum syntax keyword length.
- let g:neocomplcache_min_syntax_length = 3
-" " Set manual completion length.
- let g:neocomplcache_manual_completion_start_length = 0
-
-""=========================
-" Unite settings
-"=========================
-let g:unite_enable_start_insert=1
-" バッファ一覧
-noremap :Unite buffer
-" ファイル一覧
-noremap :Unite -buffer-name=file file
-" 最近使ったファイルの一覧
-noremap :Unite file_mru
-" ウィンドウを分割して開く
-au FileType unite nnoremap unite#do_action(‘split')
-au FileType unite inoremap unite#do_action(‘split')
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap unite#do_action(‘vsplit')
-au FileType unite inoremap unite#do_action(‘vsplit')
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap :q
-au FileType unite inoremap :q
-" 初期設定関数を起動する
-au FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
-	" Overwrite settings.
-endfunction
-
-""=========================
-" VimShell settings
-"=========================
-nnoremap <silent> vims :VimShell<CR>
 
 
