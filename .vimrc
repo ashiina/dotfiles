@@ -99,7 +99,6 @@ set fileencodings=utf-8,euc-jp,sjis
 " key mapping
 "nnoremap <C-g> :! apachectl graceful <Enter> 
 nnoremap <C-c>p :! php -l % <Enter>
-inoremap <C-d> error_log("");
 nnoremap <C-e>s :set encoding=sjis <Enter>
 nnoremap <C-e>u :set encoding=utf-8 <Enter>
 nnoremap <C-e>e :set encoding=euc-jp <Enter>
@@ -109,7 +108,7 @@ set backspace=indent,eol,start
 
 "-----------------
 " syntastic config
-nnoremap <C-c>e :SyntasticCheck<Enter>:Errors<Enter>
+nnoremap <silent><C-c>e :SyntasticCheck<Enter>:Errors<Enter>
 
 "-----------------
 " neocomplcache 
@@ -140,9 +139,11 @@ let g:neocomplcache_dictionary_filetype_lists = {
 
 "----------------
 " fugitive config
-nnoremap <C-g>a :Gwrite <Enter>
-nnoremap <C-g>c :Gcommit <Enter>
-nnoremap <C-g>f :Gdiff <Enter>
+nnoremap <silent><C-g>a :Gwrite <Enter>
+nnoremap <silent><C-g>c :Gcommit <Enter>
+nnoremap <silent><C-g>f :Gdiff <Enter>
 
+"---------------
+nnoremap <silent><C-n> :NERDTreeToggle <Enter>
 
 
