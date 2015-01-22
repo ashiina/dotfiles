@@ -7,7 +7,8 @@ fi
 
 # Core settings
 umask 002
-#export TERM=dtterm
+
+export TERM=screen-256color
 PS1='[\u@\h \W]$ '
 
 # Android SDK path
@@ -25,7 +26,6 @@ export PATH=$PATH:/Users/shiinaahmad/android_sdk/platform-tools
 if [ -f ~/.bash_git ]; then
 	. ~/.bash_git
 fi
-
 GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='[\[\033[0m\]\u@\h\[\033[0m\]:\[\033[36m\]\w\[\033[33m\]$(__git_ps1)\[\033[00m\]]\n\$ '
 
